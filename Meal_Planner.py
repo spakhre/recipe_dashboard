@@ -19,7 +19,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 )
 
 container_title = dbc.Container([
-    # declare colum to put on the column component
+    # declare column to put on the column component
     dbc.Col(html.H1("Optimum Grocery",
                     className='text-center text-primary mb-4'),
             width=12)
@@ -163,23 +163,22 @@ card_sunday=      dbc.Card(
 
 
 
-table_grocery=          html.Div([ html.Label("This is my Table Title", style={"color": "blue", "font-weight": "bold","text-align": "justify"}),
+table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", style={"color": "blue", "font-weight": "bold","text-align": "justify"}),
                 dash_table.DataTable(
 
                 id='our-table1',
                 columns=[{'name': 'Groceries', 'id': 'Product', 'deletable': False, 'renamable': False},
-                         {'name': 'Version', 'id': 'Version', 'deletable': False, 'renamable': False},
-                         {'name': 'Purchase Date', 'id': 'Purchase Date', 'type': 'datetime', 'deletable': False, 'renamable': False}],
-                data=[{'Product': 'Iphone', 'Version': '6a', 'Price': 799, 'Sales': 2813},
-                      {'Product': 'Iphone', 'Version': '9', 'Price': 900, 'Sales': 5401},
-                      {'Product': 'Iphone', 'Version': '7', 'Price': 799, 'Sales': 2513},
-                      {'Product': 'Iphone', 'Version': '8', 'Price': 850, 'Sales': 5401},
-                      {'Product': 'Galaxy', 'Version': 'S9', 'Price': 900, 'Sales': 6084},
-                      {'Product': 'Galaxy', 'Version': 'S10', 'Price': 1000, 'Sales': 7084},
-                      {'Product': 'Galaxy', 'Version': 'S20', 'Price': 1200, 'Sales': 9084},
-                      {'Product': 'Pixel', 'Version': '1', 'Price': 400, 'Sales': 2084},
-                      {'Product': 'Pixel', 'Version': '2', 'Price': 500, 'Sales': 3033},
-                      {'Product': 'Pixel', 'Version': '3', 'Price': 600, 'Sales': 6000}],
+                         {'name': 'Purchase Date', 'id': 'Purchase Date', 'type': 'datetime', 'deletable': False, 'renamable': False},
+                                   {'name': 'Remaining Qty', 'id': 'Remaining Qty', 'deletable': False, 'renamable': False}],
+                data=[{'Product': 'Chicken Breast', 'Purchase Date': '2021-01-07', 'Price': 799, 'Sales': 2813},
+                      {'Product': 'Rice', 'Purchase Date': '2021-01-07', 'Price': 900, 'Sales': 5401},
+                      {'Product': 'Pasta', 'Purchase Date': '2021-01-07', 'Price': 799, 'Sales': 2513},
+                      {'Product': 'Broccoli', 'Purchase Date': '2021-01-07', 'Price': 850, 'Sales': 5401},
+                      {'Product': 'Apple', 'Purchase Date': '2021-01-07', 'Price': 900, 'Sales': 6084},
+                      {'Product': 'Grapes', 'Purchase Date': '2021-01-07', 'Price': 1000, 'Sales': 7084},
+                      {'Product': 'Mixed Greens', 'Purchase Date': '2021-01-07', 'Price': 1200, 'Sales': 9084},
+                      {'Product': 'Roma Tomatoes', 'Purchase Date': '2021-01-07', 'Price': 400, 'Sales': 2084}],
+
                 editable=True,  # allow user to edit data inside tabel
                 row_deletable=True,  # allow user to delete rows
                 sort_action="native",  # give user capability to sort columns
@@ -196,7 +195,7 @@ table_grocery=          html.Div([ html.Label("This is my Table Title", style={"
 ])
 
 
-table_shop=      html.Div([ html.Label("This is my Table Title2", style={"color": "blue", "font-weight": "bold","text-align": "justify"}),
+table_shop=      html.Div([ html.Label("Make Your Groceries List", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='our-table',
                 columns=[{'name': 'Product', 'id': 'Product', 'deletable': False, 'renamable': False},
