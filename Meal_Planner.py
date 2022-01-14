@@ -166,7 +166,8 @@ card_sunday=      dbc.Card(
 
 
 
-table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", style={"color": "blue", "font-weight": "bold","text-align": "justify"}),
+table_grocery=          html.Div([ html.Div([
+                html.Label("  Food Menu ", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='menu-table',
                 columns=[{"name": c, "id": c, "deletable": False, "renamable": False}
@@ -176,7 +177,7 @@ table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", sty
                 editable=True,  # allow user to edit data inside table
                 row_deletable=True,  # allow user to delete rows
                 sort_action="native",  # sort columns
-                sort_mode="single",  # sort single columns
+                sort_mode="multi",  # sort single columns
                 filter_action="native",  # allow filtering of columns
                 page_action='none',  # render all of the data at once. No paging.
                 style_table={'height': '350px', 'width': '1450px', 'overflowY': 'auto', 'overflowX': 'scroll'},
@@ -191,11 +192,13 @@ table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", sty
                         'whiteSpace': 'normal',
                         'height': 'auto'
                     }
-            ), html.Button('Add Grocery', id='editing-rows1-button', n_clicks=0) ,
-])
+            ), html.Button('Add Menu', id='editing-rows1-button', n_clicks=0) ,
+            ],style={"text-align": "center"})
+    ])
 
 
-table_shop=      html.Div([ html.Label("Make Your Groceries Shopping List", style={"color": "blue", "font-weight": "bold"}),
+table_shop=      html.Div([  html.Div([
+    html.Label("Make Your Groceries Shopping List", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='our-table',
                 columns=[{'name': 'Product', 'id': 'Product', 'deletable': False, 'renamable': False},
@@ -224,7 +227,8 @@ table_shop=      html.Div([ html.Label("Make Your Groceries Shopping List", styl
                         'height': 'auto'
                     }
                 ), html.Button('Add Groceries Shopping Row', id='editing-rows-button', n_clicks=0),
-])
+            ], style={"text-align": "center"})
+            ])
 
 # Layout the app
 app.layout = html.Div([
