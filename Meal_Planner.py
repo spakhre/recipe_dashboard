@@ -167,7 +167,7 @@ card_sunday=      dbc.Card(
 
 
 table_grocery=          html.Div([ html.Div([
-                html.Label("  Food Menu ", style={"color": "blue", "font-weight": "bold"}),
+                html.Label("Food Menu (Amount per 100g edible portion)", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='menu-table',
                 columns=[{"name": c, "id": c, "deletable": False, "renamable": False}
@@ -177,10 +177,10 @@ table_grocery=          html.Div([ html.Div([
                 editable=True,  # allow user to edit data inside table
                 row_deletable=True,  # allow user to delete rows
                 sort_action="native",  # sort columns
-                sort_mode="multi",  # sort single columns
+                sort_mode="single",  # sort single columns
                 filter_action="native",  # allow filtering of columns
                 page_action='none',  # render all of the data at once. No paging.
-                style_table={'height': '350px', 'width': '1450px', 'overflowY': 'auto', 'overflowX': 'scroll'},
+                style_table={'height': '400px', 'width': '1450px', 'overflowY': 'auto', 'overflowX': 'scroll'},
                 style_cell_conditional=[  # align text columns to center.
                         {
                             'if': {'column_id': c},
@@ -220,7 +220,7 @@ table_shop=      html.Div([  html.Div([
                 sort_action="native",  # give user capability to sort columns
                 sort_mode="single",  # sort across 'multi' or 'single' columns
                 filter_action="native",  # allow filtering of columns
-                style_table={'height': '350px', 'width': '400px','overflowY': 'scroll'},
+                style_table={'height': '400px', 'width': '400px','overflowY': 'scroll'},
                 style_cell={'textAlign': 'left', 'minWidth': '80px', 'width': '80px', 'maxWidth': '80px'},
                 style_data={                                             # overflow cells' content into multiple lines
                         'whiteSpace': 'normal',
@@ -249,7 +249,7 @@ app.layout = html.Div([
 
 
 @app.callback(
-    Output('our-table', 'data'),
+    Output(component_id='our-table', component_property='data'),
     [Input('editing-rows-button', 'n_clicks')],
     [State('our-table', 'data'),
      State('our-table', 'columns')],
@@ -260,7 +260,7 @@ def add_row(n_clicks, rows, columns):
     return rows
 
 @app.callback(
-    Output('menu-table', 'data'),
+    Output('menu-table', 'figure'),
     [Input('editing-rows1-button', 'n_clicks')],
     [State('menu-table', 'data'),
      State('menu-table', 'columns')],
@@ -271,14 +271,15 @@ def add_row1(n_clicks, rows, columns):
         rows.append({c['id']: '' for c in columns})
     return rows
 
-# Create bar chart
+# Create Line chart
 @app.callback(
     Output('menu_graph', 'figure'),
     [Input('menu-table', 'data')])
 def display_graph(data):
     df_fig = pd.DataFrame(data)
-    fig = px.bar(df_fig, x='Carbohydrates', y='Consume_Date')
-    return fig
+    print(df_fig)
+    fig = px.line(data_frame=df_fig, x="Date Of Consumption", y="Calories")
+    fig.show()
 
 
 
