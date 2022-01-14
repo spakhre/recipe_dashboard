@@ -9,6 +9,11 @@ from dash import dash_table
 import pandas as pd
 import pandas_datareader.data as web
 import datetime
+import sqlite3
+con = sqlite3.connect('meal_planner.db')
+
+# Import data from sqlite to panda
+df = pd.read_sql('select * from FoodMenu', con)
 
 
 
@@ -163,29 +168,26 @@ card_sunday=      dbc.Card(
 
 table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", style={"color": "blue", "font-weight": "bold","text-align": "justify"}),
                 dash_table.DataTable(
+                id='menu-table',
+                columns=[{"name": c, "id": c, "deletable": False, "renamable": False}
+                         for c in df.columns], # create all columns at once
+                data=df.to_dict('records'),
 
-                id='our-table1',
-                columns=[{'name': 'Groceries', 'id': 'Product', 'deletable': False, 'renamable': False},
-                         {'name': 'Purchase Date', 'id': 'Purchase Date', 'type': 'datetime', 'deletable': False, 'renamable': False},
-                                   {'name': 'Remaining Qty', 'id': 'Remaining Qty', 'deletable': False, 'renamable': False}],
-                data=[{'Product': 'Chicken Breast', 'Purchase Date': '2021-01-07', 'Price': 799, 'Sales': 2813},
-                      {'Product': 'Rice', 'Purchase Date': '2021-01-07', 'Price': 900, 'Sales': 5401},
-                      {'Product': 'Pasta', 'Purchase Date': '2021-01-07', 'Price': 799, 'Sales': 2513},
-                      {'Product': 'Broccoli', 'Purchase Date': '2021-01-07', 'Price': 850, 'Sales': 5401},
-                      {'Product': 'Apple', 'Purchase Date': '2021-01-07', 'Price': 900, 'Sales': 6084},
-                      {'Product': 'Grapes', 'Purchase Date': '2021-01-07', 'Price': 1000, 'Sales': 7084},
-                      {'Product': 'Mixed Greens', 'Purchase Date': '2021-01-07', 'Price': 1200, 'Sales': 9084},
-                      {'Product': 'Roma Tomatoes', 'Purchase Date': '2021-01-07', 'Price': 400, 'Sales': 2084}],
-
-                editable=True,  # allow user to edit data inside tabel
+                editable=True,  # allow user to edit data inside table
                 row_deletable=True,  # allow user to delete rows
-                sort_action="native",  # give user capability to sort columns
-                sort_mode="single",  # sort across 'multi' or 'single' columns
+                sort_action="native",  # sort columns
+                sort_mode="single",  # sort single columns
                 filter_action="native",  # allow filtering of columns
                 page_action='none',  # render all of the data at once. No paging.
-                style_table={'height': '350px', 'overflowY': 'auto', 'width': '500px' },
-                style_cell={'textAlign': 'left', 'minWidth': '80px', 'width': '80px', 'maxWidth': '80px'},
-                style_data={  # overflow cells' content into multiple lines
+                style_table={'height': '350px', 'width': '1450px', 'overflowY': 'auto', 'overflowX': 'scroll'},
+                style_cell_conditional=[  # align text columns to center.
+                        {
+                            'if': {'column_id': c},
+                            'textAlign': 'center'
+                        } for c in ['Food_Name', 'Category', 'Consume_date']
+                    ],
+                # style_cell={'textAlign': 'left', 'minWidth': '80px', 'width': '80px', 'maxWidth': '80px'},
+                style_data={                # overflow cells' content into multiple lines
                         'whiteSpace': 'normal',
                         'height': 'auto'
                     }
@@ -197,26 +199,25 @@ table_shop=      html.Div([ html.Label("Make Your Groceries Shopping List", styl
                 dash_table.DataTable(
                 id='our-table',
                 columns=[{'name': 'Product', 'id': 'Product', 'deletable': False, 'renamable': False},
-                         {'name': 'Version', 'id': 'Version', 'deletable': True, 'renamable': True},
-                         {'name': 'Calories', 'id': 'Calories', 'deletable': False, 'renamable': False},],
-                data=[{'Product': 'Chicken Breast', 'Version': '6a', 'Price': 799, 'Sales': 2813},
-                      {'Product': 'Rice', 'Version': '9', 'Price': 900, 'Sales': 5401},
-                      {'Product': 'Pasta', 'Version': '7', 'Price': 799, 'Sales': 2513},
-                      {'Product': 'Broccoli', 'Version': '8', 'Price': 850, 'Sales': 5401},
-                      {'Product': 'Milk', 'Version': 'S9', 'Price': 900, 'Sales': 6084},
-                      {'Product': 'Yogurt', 'Version': 'S10', 'Price': 1000, 'Sales': 7084},
-                      {'Product': 'Beans', 'Version': 'S20', 'Price': 1200, 'Sales': 9084},
-                      {'Product': 'Fruit', 'Version': '1', 'Price': 400, 'Sales': 2084},
-                      {'Product': 'Spaghetti', 'Version': '2', 'Price': 500, 'Sales': 3033},
-                      {'Product': 'Soda', 'Version': '3', 'Price': 600, 'Sales': 6000}],
+                         {'name': 'Quantity', 'id': 'Quantity', 'deletable': True, 'renamable': True},
+                         {'name': 'Notes', 'id': 'Notes', 'deletable': True, 'renamable': True},],
+                data=[{'Product': 'Chicken Breast', 'Quantity': '1', 'Notes':'Buy 3 lb only'},
+                      {'Product': 'Rice', 'Quantity': '1', },
+                      {'Product': 'Pasta', 'Quantity': '7'},
+                      {'Product': 'Broccoli', 'Quantity': '8', 'Notes':'Raw'},
+                      {'Product': 'Milk', 'Quantity': 'S9'},
+                      {'Product': 'Yogurt', 'Quantity': 'S10'},
+                      {'Product': 'Beans', 'Quantity': 'S20'},
+                      {'Product': 'Fruit', 'Quantity': '1', },
+                      {'Product': 'Spaghetti', 'Quantity': '2'},
+                      {'Product': 'Water', 'Quantity': '3','Notes':'Refill'},
+                      {'Product': 'Soda', 'Quantity': '2'}],
                 editable=True,  # allow user to edit data inside table
                 row_deletable=True,  # allow user to delete rows
                 sort_action="native",  # give user capability to sort columns
                 sort_mode="single",  # sort across 'multi' or 'single' columns
                 filter_action="native",  # allow filtering of columns
-                page_action='native',  # all data is passed to the table up-front.
-                page_current=0,        # Current page number
-                style_table={'height': '350px', 'overflowY': 'scroll'},
+                style_table={'height': '350px', 'width': '400px','overflowY': 'scroll'},
                 style_cell={'textAlign': 'left', 'minWidth': '80px', 'width': '80px', 'maxWidth': '80px'},
                 style_data={                                             # overflow cells' content into multiple lines
                         'whiteSpace': 'normal',
@@ -225,10 +226,7 @@ table_shop=      html.Div([ html.Label("Make Your Groceries Shopping List", styl
                 ), html.Button('Add Groceries Shopping Row', id='editing-rows-button', n_clicks=0),
 ])
 
-# add_column= html.Button('Add Grocery', id='editing-rows-button', n_clicks=0)
-
-
-
+# Layout the app
 app.layout = html.Div([
     dbc.Row([container_title]),
     dbc.Row([dbc.CardGroup([card_monday,card_tuesday, card_wednesday, card_thursday,card_friday,
@@ -240,7 +238,7 @@ app.layout = html.Div([
         dbc.Row([dbc.Col(table_grocery),
                  dbc.Col(table_shop)])
     ]),
-    dcc.Graph(id='groceries-graph')
+    dcc.Graph(id='menu-graph')
 ])
 
 
@@ -253,25 +251,32 @@ app.layout = html.Div([
      State('our-table', 'columns')],
 )
 def add_row(n_clicks, rows, columns):
-    # print(rows)
     if n_clicks > 0:
         rows.append({c['id']: '' for c in columns})
-    # print(rows)
     return rows
 
 @app.callback(
-    Output('our-table1', 'data'),
+    Output('menu-table', 'data'),
     [Input('editing-rows1-button', 'n_clicks')],
-    [State('our-table1', 'data'),
-     State('our-table1', 'columns')],
+    [State('menu-table', 'data'),
+     State('menu-table', 'columns')],
 )
+
 def add_row1(n_clicks, rows, columns):
-    # print(rows)
     if n_clicks > 0:
         rows.append({c['id']: '' for c in columns})
-    # print(rows)
     return rows
+
+# Create bar chart
+@app.callback(
+    Output('menu_graph', 'figure'),
+    [Input('menu-table', 'data')])
+def display_graph(data):
+    df_fig = pd.DataFrame(data)
+    fig = px.bar(df_fig, x='Carbohydrates', y='Consume_Date')
+    return fig
+
 
 
 if __name__ =='__main__':
-    app.run_server(debug =True, port=3000)
+    app.run_server(port=3000)
