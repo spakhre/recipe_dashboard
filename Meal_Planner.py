@@ -1,4 +1,3 @@
-import response
 import dash
 from dash import html
 from dash import dcc
@@ -7,9 +6,10 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 from dash import dash_table
 import pandas as pd
-import pandas_datareader.data as web
 import datetime
 import sqlite3
+
+
 con = sqlite3.connect('meal_planner.db')
 
 # Import data from sqlite to panda
@@ -208,9 +208,9 @@ table_shop=      html.Div([  html.Div([
                       {'Product': 'Rice', 'Quantity': '1', },
                       {'Product': 'Pasta', 'Quantity': '7'},
                       {'Product': 'Broccoli', 'Quantity': '8', 'Notes':'Raw'},
-                      {'Product': 'Milk', 'Quantity': 'S9'},
-                      {'Product': 'Yogurt', 'Quantity': 'S10'},
-                      {'Product': 'Beans', 'Quantity': 'S20'},
+                      {'Product': 'Milk', 'Quantity': '1'},
+                      {'Product': 'Yogurt', 'Quantity': '6'},
+                      {'Product': 'Beans', 'Quantity': '2'},
                       {'Product': 'Fruit', 'Quantity': '1', },
                       {'Product': 'Spaghetti', 'Quantity': '2'},
                       {'Product': 'Water', 'Quantity': '3','Notes':'Refill'},
