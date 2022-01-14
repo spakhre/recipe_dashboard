@@ -1,34 +1,54 @@
-import requests
-import sqlite3 as sql
-import json
-import urllib
-from random import randint
-
-FILENAME = "nutrition01.db"
-con = sql.connect(FILENAME)
-C = con.cursor()
-
-# ID set is used to ensure all recipes have unique ID
-IDS = {-1}
-Nutrition_APP_ID='94cea5f5',
-Nutrition_API_KEY='3c1e612154ff5791acb596441fcbbf7a'
-
-URL = f'https://api.edamam.com/search?/app_id=${Nutrition_APP_ID}&app_key=${Nutrition_API_KEY}'
-
-response = requests.get(URL)
-print(response)
+import sqlite3
+import csv
 
 
-# Find Food Nutrition
+FILENAME = "meal_planner.db"
+conn = sqlite3.connect(FILENAME)
+cur = conn.cursor()
 
-def display_recipe_labels(data, index):
-    """
-    Displays all recipe labels from a result of request.
-    Returns the max index of list of recipes.
-    """
-    print()
-    for recipe in data:
-        index += 1
-        print(f"   {index})", recipe['recipe']['label'])
-    print()
-    return index
+cur.execute('''
+CREATE TABLE IF NOT EXISTS "FoodMenu"(
+      "Menu_Id" TEXT,
+      "Consume_Date" TEXT,
+      "Food_Name" TEXT,
+      "Category" TEXT,
+      "Calories" INTEGER,
+      "Protein" INTEGER,
+      "Carbohydrates" INTEGER,
+      "Sugars" INTEGER,
+      "Fiber" INTEGER,
+      "Total_Fat" INTEGER,
+      "Calcium" INTEGER,
+      "Sodium" INTEGER      
+    );
+    ''')
+
+
+print("FoodMenu table created")
+
+fname="Food_Menu.csv"
+
+with open(fname) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    for record in csv_reader:
+        print(record)
+        Menu_Id=record[0] #Unique records
+        Consume_Date=record[1]
+        Food_Name=record[2]
+        Category=record[3]
+        Calories=record[4]
+        Protein=record[5]
+        Carbohydrates=record[6]
+        Sugars=record[7]
+        Fiber=record[8]
+        Total_Fat=record[9]
+        Calcium=record[10]
+        Sodium=record[11]
+
+# Insert Into database field
+        cur.execute('''INSERT INTO FoodMenu (Menu_Id,Consume_Date,Food_Name,Category,Calories,Protein,Carbohydrates,Sugars,Fiber,Total_Fat,Calcium,Sodium)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ''', (Menu_Id,Consume_Date,Food_Name,Category,Calories,Protein,Carbohydrates,Sugars,Fiber,Total_Fat,Calcium,Sodium))
+        conn.commit()
+conn.close()
+
+

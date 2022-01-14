@@ -31,14 +31,14 @@ card_monday =   dbc.Card(
                 dbc.CardHeader("MONDAY"),
                 dbc.CardBody(
                     [
-                        html.H4("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text", size="sm"),
-                        html.H4("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
-                        html.H4("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
-                        html.H4("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.H5("Breakfast", className="card-title"),
+                        html.P("Cereal", className="card-text"),
+                        html.H5("Lunch", className="card-title"),
+                        html.P("Noodle soup", className="card-text"),
+                        html.H5("Dinner", className="card-title"),
+                        html.P( "Roasted Potatoes, Pork Steak",className="card-text"),
+                        html.H5("Snack", className="card-title"),
+                        html.P("Grapefruit, Chai", className="card-text")
 
                     ]
                 )
@@ -50,14 +50,14 @@ card_tuesday=      dbc.Card(
                 dbc.CardHeader("TUESDAY"),
                 dbc.CardBody(
                     [
-                        html.H4("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text", size="sm"),
-                        html.H4("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
-                        html.H4("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
-                        html.H4("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.H5("Breakfast", className="card-title"),
+                        html.P("Pancakes", className="card-text"),
+                        html.H5("Lunch", className="card-title"),
+                        html.P("Chicken Fried Rice", className="card-text"),
+                        html.H5("Dinner", className="card-title"),
+                        html.P( "Asparagus, Chicken Breast",className="card-text"),
+                        html.H5("Snack", className="card-title"),
+                        html.P("Almond, Apples", className="card-text")
 
                     ]
                 )
@@ -69,15 +69,14 @@ card_wednesday=      dbc.Card(
                 dbc.CardHeader("WEDNESDAY"),
                 dbc.CardBody(
                     [
-                        html.H4("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text", size="sm"),
-                        html.H4("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
-                        html.H4("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
-                        html.H4("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
-
+                        html.H5("Breakfast", className="card-title"),
+                        html.P("English Muffin-Egg", className="card-text"),
+                        html.H5("Lunch", className="card-title"),
+                        html.P("Chicken Pad Thai", className="card-text"),
+                        html.H5("Dinner", className="card-title"),
+                        html.P( "Dumpling",className="card-text"),
+                        html.H5("Snack", className="card-title"),
+                        html.P("Orange", className="card-text")
                     ]
                 )
             ],
@@ -88,14 +87,14 @@ card_thursday = dbc.Card(
                 dbc.CardHeader("THURSDAY"),
                 dbc.CardBody(
                     [
-                        html.H4("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text", size="sm"),
-                        html.H4("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
-                        html.H4("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
-                        html.H4("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.H5("Breakfast", className="card-title"),
+                        html.P("Cereal, Egg", className="card-text"),
+                        html.H5("Lunch", className="card-title"),
+                        html.P("Chicken Quesadilla", className="card-text"),
+                        html.H5("Dinner", className="card-title"),
+                        html.P( "Rice W Lentils, Spinach",className="card-text"),
+                        html.H5("Snack", className="card-title"),
+                        html.P("Apple", className="card-text")
 
                     ]
                 )
@@ -107,14 +106,14 @@ card_friday = dbc.Card(
                 dbc.CardHeader("FRIDAY"),
                 dbc.CardBody(
                     [
-                        html.H4("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text", size="sm"),
-                        html.H4("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
-                        html.H4("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
-                        html.H4("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.H5("Breakfast", className="card-title"),
+                        html.P("Cereal", className="card-text"),
+                        html.H5("Lunch", className="card-title"),
+                        html.P("Chicken Sandwich", className="card-text"),
+                        html.H5("Dinner", className="card-title"),
+                        html.P( "Chicken drumsticks, Green Beans",className="card-text"),
+                        html.H5("Snack", className="card-title"),
+                        html.P("Smoothie, Almond", className="card-text")
 
                     ]
                 )
@@ -123,18 +122,17 @@ card_friday = dbc.Card(
         )
 card_saturday=       dbc.Card(
             [
-                dbc.CardHeader("SATURDAY(DATE)"),
+                dbc.CardHeader("SATURDAY"),
                 dbc.CardBody(
                     [
-                        html.P("Date"),
                         html.H5("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text"),
+                        html.P("Pancakes", className="card-text"),
                         html.H5("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
+                        html.P("Tuna Sandwich", className="card-text"),
                         html.H5("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
+                        html.P( "Rice Pilaf, Palak Paneer",className="card-text"),
                         html.H5("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.P("Fruit Salad", className="card-text")
 
                     ]
                 )
@@ -147,13 +145,13 @@ card_sunday=      dbc.Card(
                 dbc.CardBody(
                     [
                         html.H5("Breakfast", className="card-title"),
-                        dbc.Input(placeholder="Input goes here...", type="text"),
+                        html.P("Cereal", className="card-text"),
                         html.H5("Lunch", className="card-title"),
-                        dbc.Input(placeholder="A small input...", size="sm"),
+                        html.P("Spanish rice", className="card-text"),
                         html.H5("Dinner", className="card-title"),
-                        dbc.Textarea(className="mb-3", placeholder="A Textarea", size="sm"),
+                        html.P( "Veg Rice W Curry",className="card-text"),
                         html.H5("Snack", className="card-title"),
-                        html.P("This is some card text", className="card-text")
+                        html.P("Hummus, Clementine", className="card-text")
 
                     ],
                 )
@@ -185,7 +183,7 @@ table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", sty
                 sort_mode="single",  # sort across 'multi' or 'single' columns
                 filter_action="native",  # allow filtering of columns
                 page_action='none',  # render all of the data at once. No paging.
-                style_table={'height': '350px', 'overflowY': 'auto'},
+                style_table={'height': '350px', 'overflowY': 'auto', 'width': '500px' },
                 style_cell={'textAlign': 'left', 'minWidth': '80px', 'width': '80px', 'maxWidth': '80px'},
                 style_data={  # overflow cells' content into multiple lines
                         'whiteSpace': 'normal',
@@ -195,22 +193,22 @@ table_grocery=          html.Div([ html.Label("Groceries Inventory At Home", sty
 ])
 
 
-table_shop=      html.Div([ html.Label("Make Your Groceries List", style={"color": "blue", "font-weight": "bold"}),
+table_shop=      html.Div([ html.Label("Make Your Groceries Shopping List", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='our-table',
                 columns=[{'name': 'Product', 'id': 'Product', 'deletable': False, 'renamable': False},
                          {'name': 'Version', 'id': 'Version', 'deletable': True, 'renamable': True},
-                         {'name': 'Calories', 'id': 'Price', 'deletable': False, 'renamable': False},],
-                data=[{'Product': 'Iphone', 'Version': '6a', 'Price': 799, 'Sales': 2813},
-                      {'Product': 'Iphone', 'Version': '9', 'Price': 900, 'Sales': 5401},
-                      {'Product': 'Iphone', 'Version': '7', 'Price': 799, 'Sales': 2513},
-                      {'Product': 'Iphone', 'Version': '8', 'Price': 850, 'Sales': 5401},
-                      {'Product': 'Galaxy', 'Version': 'S9', 'Price': 900, 'Sales': 6084},
-                      {'Product': 'Galaxy', 'Version': 'S10', 'Price': 1000, 'Sales': 7084},
-                      {'Product': 'Galaxy', 'Version': 'S20', 'Price': 1200, 'Sales': 9084},
-                      {'Product': 'Pixel', 'Version': '1', 'Price': 400, 'Sales': 2084},
-                      {'Product': 'Pixel', 'Version': '2', 'Price': 500, 'Sales': 3033},
-                      {'Product': 'Pixel', 'Version': '3', 'Price': 600, 'Sales': 6000}],
+                         {'name': 'Calories', 'id': 'Calories', 'deletable': False, 'renamable': False},],
+                data=[{'Product': 'Chicken Breast', 'Version': '6a', 'Price': 799, 'Sales': 2813},
+                      {'Product': 'Rice', 'Version': '9', 'Price': 900, 'Sales': 5401},
+                      {'Product': 'Pasta', 'Version': '7', 'Price': 799, 'Sales': 2513},
+                      {'Product': 'Broccoli', 'Version': '8', 'Price': 850, 'Sales': 5401},
+                      {'Product': 'Milk', 'Version': 'S9', 'Price': 900, 'Sales': 6084},
+                      {'Product': 'Yogurt', 'Version': 'S10', 'Price': 1000, 'Sales': 7084},
+                      {'Product': 'Beans', 'Version': 'S20', 'Price': 1200, 'Sales': 9084},
+                      {'Product': 'Fruit', 'Version': '1', 'Price': 400, 'Sales': 2084},
+                      {'Product': 'Spaghetti', 'Version': '2', 'Price': 500, 'Sales': 3033},
+                      {'Product': 'Soda', 'Version': '3', 'Price': 600, 'Sales': 6000}],
                 editable=True,  # allow user to edit data inside table
                 row_deletable=True,  # allow user to delete rows
                 sort_action="native",  # give user capability to sort columns
