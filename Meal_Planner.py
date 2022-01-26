@@ -18,7 +18,7 @@ df = pd.read_sql('select * from FoodMenu', con)
 
 
 # mobile layout/ responsiveness
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], # select the theme
                 meta_tags = [{'name': 'viewport',
               'content': 'width=device-width, initial-scale=1.0'}]
                 )
@@ -30,7 +30,7 @@ container_title = dbc.Container([
             width=12)
 ])
 
-        # declare colum to put on the column component
+        # Create cards for Layout
 card_monday =   dbc.Card(
             [
                 dbc.CardHeader("MONDAY"),
@@ -166,12 +166,12 @@ card_sunday=      dbc.Card(
 
 
 
-table_grocery=          html.Div([ html.Div([
+table_grocery= html.Div([ html.Div([
                 html.Label("Food Menu (Amount per 100g edible portion)", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='menu-table',
                 columns=[{"name": c, "id": c, "deletable": False, "renamable": False}
-                         for c in df.columns], # create all columns at once
+                         for c in df.columns], # create all columns at once from panda dataframe columns
                 data=df.to_dict('records'),
 
                 editable=True,  # allow user to edit data inside table
@@ -197,7 +197,7 @@ table_grocery=          html.Div([ html.Div([
     ])
 
 
-table_shop=      html.Div([  html.Div([
+table_shop= html.Div([  html.Div([
     html.Label("Make Your Groceries Shopping List", style={"color": "blue", "font-weight": "bold"}),
                 dash_table.DataTable(
                 id='our-table',
@@ -254,7 +254,7 @@ app.layout = html.Div([
     [State('our-table', 'data'),
      State('our-table', 'columns')],
 )
-def add_row(n_clicks, rows, columns):
+def add_row(n_clicks, rows, columns):  #add # of rows based on clicks( html component)
     if n_clicks > 0:
         rows.append({c['id']: '' for c in columns})
     return rows
